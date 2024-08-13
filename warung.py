@@ -33,6 +33,24 @@ def check():
         stok_barang = item[4]  
         table.add_row(str(id_barang),str(kode_barang), nama_barang, str(harga_barang), str(stok_barang))
     console1.print(table)
+
+
+def update():
+    check()
+    id = input("Masukkan id barang yang ingin diubah: ")
+    kode_update = input("Masukkan kode barang baru: ")
+    nama_update = input("Masukkan nama barang baru: ")
+    harga_update = int(input("Masukkan harga barang baru: "))
+    stok_update = int(input("Masukkan stok barang baru: "))
+    db.update_barang(kode_update, nama_update, harga_update, stok_update,id)
+    check()
+    
+
+def delete():
+    check()
+    id = input("Masukkan id barang yang ingin dihapus: ")
+    db.delete_barang(id)
+    check()
     
 def exit():
     clear_screen()
@@ -56,7 +74,9 @@ while True:
     table.add_column("Tombol")
     table.add_column("Action")
     table.add_row("c", "Tambah Barang")
-    table.add_row("v", "Lihat Barang")
+    table.add_row("r", "Lihat Barang")
+    table.add_row("u", "Update Barang")
+    table.add_row("d", "Delete Barang")
     table.add_row("q", "Quit")
     console1.print(table)
 
@@ -65,9 +85,17 @@ while True:
         clear_screen()
         add()
         input("Tekan enter untuk kembali ke menu...")
-    elif pilih == "v":
+    elif pilih == "r":
         clear_screen()
         check()
+        input("Tekan enter untuk kembali ke menu...")
+    elif pilih == "u":
+        clear_screen()
+        update()
+        input("Tekan enter untuk kembali ke menu...")
+    elif pilih == "d":
+        clear_screen()
+        delete()
         input("Tekan enter untuk kembali ke menu...")
     elif pilih == "q":
         exit()

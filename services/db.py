@@ -1,4 +1,5 @@
 import mysql.connector
+import time
 
 db = mysql.connector.connect(
     host = 'localhost', 
@@ -21,4 +22,22 @@ def lihat_semua_barang():
     cursor.execute("SELECT * FROM tbl_barang")
     return cursor.fetchall()
     
-        
+def update_barang(kode_barang, nama_barang, harga_barang, stok_barang,id):
+    cursor = db.cursor()
+    cursor.execute("UPDATE tbl_barang SET kode_barang=%s, nama_barang=%s, harga_barang=%s, stok_barang=%s WHERE id=%s",(kode_barang,nama_barang, harga_barang, stok_barang,id))
+    db.commit()
+    if cursor.rowcount > 0 :
+        print ("data berhasil diupdate")
+        time.sleep(1)
+    else:
+        print ("data gagal diupdate")
+
+def delete_barang(id):
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM tbl_barang WHERE id=%s",(id,))
+    db.commit()
+    if cursor.rowcount > 0 :
+        print ("data berhasil dihapus")
+        time.sleep(1)
+    else:
+        print ("data gagal dihapus")

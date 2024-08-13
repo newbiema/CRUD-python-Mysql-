@@ -1,0 +1,1 @@
+table.add_row(kode_barang, nama_barang ,str(harga_barang), str(stok_barang))

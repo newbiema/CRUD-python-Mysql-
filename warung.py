@@ -19,7 +19,6 @@ def check():
     clear_screen()    
     console1 = Console()
     table = Table(title="Data Barang")
-    
     table.add_column("id")
     table.add_column("Kode Barang")
     table.add_column("Nama")
@@ -65,38 +64,37 @@ def exit():
     time.sleep(1)
     
 
+def main_menu ():
+    while True:
+        clear_screen()    
+        console1 = Console()
+        table = Table(title="Selamat Datang di Warung Mini")
+        table.add_column("Tombol")
+        table.add_column("Action")
+        table.add_row("c", "Tambah Barang")
+        table.add_row("r", "Lihat Barang")
+        table.add_row("u", "Update Barang")
+        table.add_row("d", "Delete Barang")
+        table.add_row("q", "Quit")
+        console1.print(table)
 
-
-while True:
-    clear_screen()    
-    console1 = Console()
-    table = Table(title="Selamat Datang di Warung Mini")
-    table.add_column("Tombol")
-    table.add_column("Action")
-    table.add_row("c", "Tambah Barang")
-    table.add_row("r", "Lihat Barang")
-    table.add_row("u", "Update Barang")
-    table.add_row("d", "Delete Barang")
-    table.add_row("q", "Quit")
-    console1.print(table)
-
-    pilih = input("Pilih: ")
-    if pilih == "c":
-        clear_screen()
-        add()
-        input("Tekan enter untuk kembali ke menu...")
-    elif pilih == "r":
-        clear_screen()
-        check()
-        input("Tekan enter untuk kembali ke menu...")
-    elif pilih == "u":
-        clear_screen()
-        update()
-        input("Tekan enter untuk kembali ke menu...")
-    elif pilih == "d":
-        clear_screen()
-        delete()
-        input("Tekan enter untuk kembali ke menu...")
-    elif pilih == "q":
-        exit()
-        break
+        pilih = input("Pilih: ")
+        if pilih == "c":
+            clear_screen()
+            add()
+            input("Tekan enter untuk kembali ke menu...")
+        elif pilih == "r":
+            clear_screen()
+            check()
+            input("Tekan enter untuk kembali ke menu...")
+        elif pilih == "u":
+            clear_screen()
+            update()
+            input("Tekan enter untuk kembali ke menu...")
+        elif pilih == "d":
+            clear_screen()
+            delete()
+            input("Tekan enter untuk kembali ke menu...")
+        elif pilih == "q":
+            exit()
+            break

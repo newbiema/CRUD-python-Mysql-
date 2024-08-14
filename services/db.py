@@ -41,3 +41,19 @@ def delete_barang(id):
         time.sleep(1)
     else:
         print ("data gagal dihapus")
+        
+        
+def register_user(name,password):
+    cursor = db.cursor()
+    cursor.execute("INSERT INTO tbl_user(name, password) VALUES(%s,%s)",(name,password))
+    db.commit()
+    if cursor.rowcount > 0 :
+        print("Register Berhasil")
+    else:
+        print("Register Gagal")
+
+def login_user(name, password):
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM tbl_user WHERE name=%s AND password=%s",(name,password))
+    result = cursor.fetchone()
+    return result is not None

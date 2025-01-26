@@ -3,6 +3,7 @@ from rich.table import Table
 from services import db
 import os
 import time
+import login
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -13,9 +14,9 @@ def add():
     harga_barang = int(input('harga barang : '))
     stok_barang = int(input('stok barang : '))
     db.tambah_barang(kode_barang, nama_barang,harga_barang, stok_barang)
+    
 def check():
     items = db.lihat_semua_barang() 
-    
     clear_screen()    
     console1 = Console()
     table = Table(title="Data Barang")
@@ -63,6 +64,17 @@ def exit():
     print("1...")
     time.sleep(1)
     
+def buy():
+    check()
+    id = int(input("Masukkan id barang yang ingin dibeli: "))
+    jumlah = int(input("Masukkan jumlah yang ingin dibeli: "))
+    stok = db.beli_barang(id)
+    if stok > 0:
+        print("Barang berhasil dibeli")
+    else:
+        print("Stok barang habis")
+    input("Tekan enter untuk kembali ke menu...")
+    
 
 def main_menu ():
     while True:
@@ -97,4 +109,27 @@ def main_menu ():
             input("Tekan enter untuk kembali ke menu...")
         elif pilih == "q":
             exit()
-            break
+            
+
+def menu_user():
+    while True:
+        clear_screen()    
+        console1 = Console()
+        table = Table(title="Selamat Datang di Warung Mini")
+        table.add_column("Tombol")
+        table.add_column("Action")
+        table.add_row("1", "Lihat Barang")
+        table.add_row("2", "Beli Barang")
+        table.add_row("3", "Kembali ke Menu Login")
+        console1.print(table)
+        pilih = input("Pilih: ")
+        if pilih == "1":
+            clear_screen()
+            check()
+            input("Tekan enter untuk kembali ke menu...")
+        elif pilih == "2":
+            clear_screen()
+            buy()
+            input("Tekan enter untuk kembali ke menu...")
+        elif pilih == "3":
+            login.menu_login()

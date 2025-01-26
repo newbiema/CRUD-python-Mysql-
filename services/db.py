@@ -57,3 +57,10 @@ def login_user(name, password):
     cursor.execute("SELECT * FROM tbl_user WHERE name=%s AND password=%s",(name,password))
     result = cursor.fetchone()
     return result is not None
+
+def beli_barang (stok_barang,id):
+    jumlah = 0 
+    cursor  = db.cursor()
+    cursor.execute("UPDATE tbl_barang SET stok_barang=%s WHERE nama_barang=%s",(stok_barang-jumlah, id))
+    db.commit()
+    

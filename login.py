@@ -48,4 +48,3 @@ def menu_login():
         elif pilihan == 4:
             warung.exit()       
         
-print('anjay')
